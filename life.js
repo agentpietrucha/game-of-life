@@ -83,19 +83,33 @@ body.addEventListener('keydown', function(e){
 function live(){
   // debugger;
   for(var i = 0; i < aliveCells.length; i++){
-    if(check(aliveCells[i], i)){
-      console.log('has neighbour');
-    } else{
-      console.log('no neighbour');
-      ctx.fillStyle = 'darkcyan';
-      ctx.fillRect(aliveCells[i].x, aliveCells[i].y, 15, 15);
-      // aliveCells.splice(i, 1);
-    }
+    // if(check(aliveCells[i], i)){
+    //   console.log('has neighbour');
+    // } else{
+    //   console.log('no neighbour');
+    //   ctx.fillStyle = 'darkcyan';
+    //   ctx.fillRect(aliveCells[i].x, aliveCells[i].y, 15, 15);
+    //   // aliveCells.splice(i, 1);
+    // }
+    check(aliveCells[i], i, function(callback){
+      console.log('callback: ', callback);
+      switch (callback) {
+        case 'death':
+          console.log('no neighbour');
+          ctx.fillStyle = 'darkcyan';
+          ctx.fillRect(aliveCells[i].x, aliveCells[i].y, 15, 15);
+          break;
+        case 'survival':
+          console.log('has neighbour');
+        break;
+
+      }
+    })
   }
 }
 // seems working
 // Each cell with one or no neighbors dies, as if by solitude.
-function check(cell, b){
+function check(cell, b, callback){
   // debugger;
   var numOfNeighbours = 0;
   if(aliveCells.length <= 1){
@@ -110,13 +124,10 @@ function check(cell, b){
     }
   }
   if (numOfNeighbours <= 1 || numOfNeighbours >= 4) {
-    return false;
+    return callback('death');
   } else if(numOfNeighbours === 2 || 3){
-    return true;
+    return callback('survival');
   }
-}
-function(){
-
 }
 /*
 First rule is probably done. Second, 3rd & 4th rules have to be written to make things working properly
