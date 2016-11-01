@@ -89,7 +89,22 @@ button.addEventListener('click', function(e){
 var body = document.body;
 body.addEventListener('keydown', function(e){
   if(e.keyCode === 13){
-    live();
+    if(clicked){
+      interval = setInterval(live, 1000);
+      clicked = false;
+    } else{
+      clearInterval(interval);
+      clicked = true;
+    }
+    if(button.innerText === 'Let it live!'){
+      button.innerText = 'Let it STOP!';
+      button.setAttribute('style', 'width: 83px; left: 84px;');
+    } else{
+      clearInterval(interval);
+      button.innerText = 'Let it live!';
+      button.setAttribute('style', 'width: 67px; left: 92px;');
+    }
+  });
   }
 });
 function getLiveNeighboursNum(arr, index) {
