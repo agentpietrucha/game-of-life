@@ -37,6 +37,7 @@ for(var i = 0; i <= columnsNum; i++){
   y += recSize;
 }
 
+var aliveCells = new Array;
 canvas.addEventListener('click', function(e){
   var x = e.clientX - canvas.getBoundingClientRect().left;
   var y = e.clientY - canvas.getBoundingClientRect().top;
@@ -44,22 +45,19 @@ canvas.addEventListener('click', function(e){
   x = (Math.floor(x/16) * 16) + .5;
   y = (Math.floor(y/16) * 16) + .5;
   if(aliveCells.length === 0){
-    console.log('working in loop 1', aliveCells.length);
     aliveCells.push({x: x, y: y});
-  } else  if(!containsElement(x, y)){
+  } else  if(!containsElement(aliveCells, x, y)){
     aliveCells.push({x: x, y: y});
-    console.log(aliveCells.length);
     }
 });
-function containsElement(x, y){
-  for(var i = 0; i < aliveCells.length; i++){
-    if(aliveCells[i].x === x && aliveCells[i].y === y){
+function containsElement(arr, x, y){
+  for(var i = 0; i < arr.length; i++){
+    if(arr[i].x === x && arr[i].y === y){
       return true;
     }
   }
   return false;
 }
-var aliveCells = new Array;
 function drawRect(x, y){
   ctx.fillStyle = 'aliceblue';
   x = (Math.floor(x/16) * 16) + .5;
@@ -81,32 +79,33 @@ body.addEventListener('keydown', function(e){
   }
 });
 
-function getLiveNeighboursNum(index) {
+function getLiveNeighboursNum(arr, index) {
   // START
   // radze skomitowac to :-)
-  //  XXX tutaj dopisalem i tam nizej tez - zobacz czy skumasz o co kaman,
+  //  tutaj dopisalem i tam nizej tez - zobacz czy skumasz o co kaman,
   // YOYOYO
-
-  var cell = aliveCells[index];
-  var liveNum  = 0;
+  // debugger;
+  var cell = arr[index];
+  var liveNum = 0;
   for(var i = 0; i < aliveCells.length; i++){
     var c = aliveCells[i];
-    if ( (cell.x - 1 === c.x && cell.y === c.y) ||
-         (cell.x + 1 === c.x && cell.y === c.y) ||
-         (cell.x === c.x && cell.y - 1 === c.y) ||
-         (cell.x === c.x && cell.y + 1 === c.y) ||
-         (cell.x - 1 === c.x && cell.y - 1 === c.y) ||
-         (cell.x - 1 === c.x && cell.y + 1 === c.y) ||
-         (cell.x + 1 === c.x && cell.y - 1 === c.y) ||
-         (cell.x + 1 === c.x && cell.y + 1 === c.y)
+    if ( (cell.x - 16 === c.x && cell.y === c.y) ||
+         (cell.x + 16 === c.x && cell.y === c.y) ||
+         (cell.x === c.x && cell.y - 16 === c.y) ||
+         (cell.x === c.x && cell.y + 16 === c.y) ||
+         (cell.x - 16 === c.x && cell.y - 16 === c.y) ||
+         (cell.x - 16 === c.x && cell.y + 16 === c.y) ||
+         (cell.x + 16 === c.x && cell.y - 16 === c.y) ||
+         (cell.x + 16 === c.x && cell.y + 16 === c.y)
        ) {
       liveNum++;
     }
   }
+  console.log('livenum: ', liveNum);
   return liveNum;
   // END
 }
-
+var karolek;
 function live(){
   // debugger;
   var newAliveCells = [];
@@ -114,39 +113,45 @@ function live(){
     // 1. 1-0 neighbors die
     // 2. 4+ die
     // 3. 2-3 survive
-    var liveNeighboursNum = getLiveNeighboursNum(i);
+    var liveNeighboursNum = getLiveNeighboursNum(aliveCells, i);
     if (liveNeighboursNum <= 1 || liveNeighboursNum >= 4) {
       // aliveCells[i].splice(i, 1); // pewnie splice
       ctx.fillStyle = 'darkcyan';
-      ctx.fillRect(aliveCells[i].x, aliveCells[i].y, 15, 15);
+      ctx.fillRect(aliveCells[i].x + .5, aliveCells[i].y + .5, 14, 14);
       continue;
-    } else if (liveNeighboursNum === 2 && liveNeighboursNum === 3) {
+    } else if (liveNeighboursNum === 2 || liveNeighboursNum === 3) {
       // continue;
       newAliveCells.push(aliveCells[i]);
     }
   }
-
   for(var i = 0; i < aliveCells.length; i++){
     // 4. 3 neighbours gets populated
-    var neighbours = getNeighbours(i);
+    // debugger;
+    var neighbours = getNeighbours(i); //object
     for(var a = 0; a < neighbours.length; a++) {
       // START
-      var neighbour = neighbours[i];
-      var liveNeighboursNum = getLiveNeighboursNum(i);
+      var neighbour = neighbours[a];
+      var liveNeighboursNum = getLiveNeighboursNum(neighbours, a);
       if (liveNeighboursNum === 3) {
         // add to aliveCells
-        newAliveCells.push(neighbour);
+        ctx.fillStyle = 'aliceblue';
+        ctx.fillRect(neighbour.x + .5, neighbour.y + .5, 14, 14);
+        if(!containsElement(newAliveCells, neighbour.x, neighbour.y)){
+          newAliveCells.push(neighbour);
+          }
+        // newAliveCells.push(neighbour);
+        continue;
       }
       // END
     }
   }
+  karolek = newAliveCells;
   aliveCells = newAliveCells;
   }
 
 
 function getNeighbours(index){
   cell = aliveCells[index];
-  console.log(cell[index]);
   return [{x: cell.x - 16, y:  cell.y}, {x: cell.x + 16, y: cell.y}, {x: cell.x, y: cell.y - 16}, {x: cell.x, y: cell.y + 16}, {x: cell.x - 16, y: cell.y - 16}, {x: cell.x - 16, y: cell.y + 16}, {x: cell.x + 16, y: cell.y - 16}, {x: cell.x + 16, y: cell.y + 16}];
 }
 // Each cell with one or no neighbors dies, as if by solitude.
