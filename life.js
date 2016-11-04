@@ -66,45 +66,55 @@ var x;
 function interval(){
   x = setInterval(live, 1000);
 }
+var inpt = document.querySelector('input');
 var interval;
 var clicked = true;
-var button = document.getElementById('playButton');
-button.addEventListener('click', function(e){
+var playButton = document.getElementById('playButton');
+playButton.addEventListener('click', function(e){
   if(clicked){
-    interval = setInterval(live, 1000);
+    interval = setInterval(live, 750);
     clicked = false;
   } else{
     clearInterval(interval);
     clicked = true;
   }
-  if(button.innerText === 'Let it live!'){
-    button.innerText = 'Let it STOP!';
-    button.setAttribute('style', 'width: 83px; left: 84px;');
+  if(playButton.innerText === 'Let it live!'){
+    playButton.innerText = 'Let it STOP!';
+    playButton.setAttribute('style', 'width: 83px;');
+    document.querySelector('.playButtonContainer').setAttribute('style', 'left: -8px');
   } else{
     clearInterval(interval);
-    button.innerText = 'Let it live!';
-    button.setAttribute('style', 'width: 67px; left: 92px;');
+    playButton.innerText = 'Let it live!';
+    playButton.setAttribute('style', 'width: 67px;');
+    document.querySelector('.playButtonContainer').setAttribute('style', 'left: 0px');
   }
 });
+var clearButton = document.getElementById('clearButton');
+clearButton.addEventListener('click', function(e){
+  for(var i = 0; i < aliveCells.length; i++){
+    ctx.fillStyle = 'darkcyan';
+    ctx.fillRect(aliveCells[i].x, aliveCells[i].y, 15, 15);
+  }
+  aliveCells = [];
+})
 var body = document.body;
 body.addEventListener('keydown', function(e){
   if(e.keyCode === 13){
     if(clicked){
-      interval = setInterval(live, 1000);
+      interval = setInterval(live, 750);
       clicked = false;
     } else{
       clearInterval(interval);
       clicked = true;
     }
-    if(button.innerText === 'Let it live!'){
-      button.innerText = 'Let it STOP!';
-      button.setAttribute('style', 'width: 83px; left: 84px;');
+    if(playButton.innerText === 'Let it live!'){
+      playButton.innerText = 'Let it STOP!';
+      playButton.setAttribute('style', 'width: 83px; left: 84px;');
     } else{
       clearInterval(interval);
-      button.innerText = 'Let it live!';
-      button.setAttribute('style', 'width: 67px; left: 92px;');
+      playButton.innerText = 'Let it live!';
+      playButton.setAttribute('style', 'width: 67px; left: 92px;');
     }
-  });
   }
 });
 function getLiveNeighboursNum(arr, index) {
