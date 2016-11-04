@@ -109,11 +109,13 @@ body.addEventListener('keydown', function(e){
     }
     if(playButton.innerText === 'Let it live!'){
       playButton.innerText = 'Let it STOP!';
-      playButton.setAttribute('style', 'width: 83px; left: 84px;');
+      playButton.setAttribute('style', 'width: 83px;');
+      document.querySelector('.playButtonContainer').setAttribute('style', 'left: -8px');
     } else{
       clearInterval(interval);
       playButton.innerText = 'Let it live!';
-      playButton.setAttribute('style', 'width: 67px; left: 92px;');
+      playButton.setAttribute('style', 'width: 67px;');
+      document.querySelector('.playButtonContainer').setAttribute('style', 'left: 0px');
     }
   }
 });
@@ -142,7 +144,7 @@ function live(){
     var liveNeighboursNum = getLiveNeighboursNum(aliveCells, i);
     if (liveNeighboursNum <= 1 || liveNeighboursNum >= 4) {
       ctx.fillStyle = 'darkcyan';
-      ctx.fillRect(aliveCells[i].x + .5, aliveCells[i].y + .5, 14, 14);
+      ctx.fillRect(aliveCells[i].x, aliveCells[i].y, 15, 15);
       continue;
     } else if (liveNeighboursNum === 2 || liveNeighboursNum === 3) {
       newAliveCells.push(aliveCells[i]);
@@ -155,7 +157,7 @@ function live(){
       var liveNeighboursNum = getLiveNeighboursNum(neighbours, a);
       if (liveNeighboursNum === 3) {
         ctx.fillStyle = 'aliceblue';
-        ctx.fillRect(neighbour.x + .5, neighbour.y + .5, 14, 14);
+        ctx.fillRect(neighbour.x, neighbour.y, 15, 15);
         if(!containsElement(newAliveCells, neighbour.x, neighbour.y)){
           newAliveCells.push(neighbour);
           }
