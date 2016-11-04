@@ -12,6 +12,9 @@ body{
   align-items: baseline;
   align-content: center;
 }
+input{
+  position: absolute;
+}
 h1{
   font-size: 50px;
   font-family: 'Indie Flower';
@@ -25,6 +28,18 @@ canvas{
   top: 65px;
   left: 250.5px;
 }
+.playButtonContainer{
+  position: relative;
+}
+.buttonsContainer{
+  height: 40px;
+  left: 92px;
+  align-self: center;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 .playButton{
   border-radius: 8px;
   border: 1px solid #d4d4d4;
@@ -32,10 +47,11 @@ canvas{
   width: 67px;
   background-color: white;
   border: 0px;
-  position: absolute;
-  left: 92px;
+  position: relative;
+  /*left: 92px;*/
   outline:none;
   align-self: center;
+  order: 0;
 }
 .playButton:active{
   background-color: #c7c5c5;
@@ -43,24 +59,47 @@ canvas{
 .playButton:hover{
   cursor: pointer;
 }
-img{
+.clearButton{
+  order: 1;
+  border-radius: 8px;
+  border: 1px solid #d4d4d4;
+  font-size: 12px;
+  width: 67px;
+  background-color: white;
+  border: 0px;
+  position: relative;
+  /*left: 92px;*/
+  outline:none;
+  align-self: center;
+  /*top: 10px;*/
+}
+.clearButton:active{
+  background-color: #c0c0c0;
+}
+.clearButton:hover{
+  cursor: pointer;
+}
+.img{
   position: absolute;
+  background-image: url('./icons/question.svg');
+  background-size: 60px 30px;
   height: 30px;
-  width: 30px;
-  right: 15px;
+  width: 60px;
+  right: 30px;
   top: 15px;
   align-self: flex-start;
 }
-img:hover{
+.img:hover{
   cursor: pointer;
 }
-img:hover::after{
+.img:hover::after{
   content: 'hello world';
   position: absolute;
-  top: 0;
-  right: 0;
-  height: 10px;
-  width: 10px;
+  top: 55px;
+  right: 15px;
+  height: 30px;
+  width: 30px;
+  background-color: #9c9c9c;
 }
 .footer{
   color: #a9a9a9;

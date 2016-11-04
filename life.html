@@ -7,9 +7,14 @@
     <link rel="stylesheet" href="./life.css" media="screen" title="no title" charset="utf-8">
   </head>
   <body>
-    <button type="button" name="playButton" id="playButton" class="playButton">Let it live!</button>
+    <div class="buttonsContainer">
+      <div class="playButtonContainer"><button type="button" name="playButton" id="playButton" class="playButton">Let it live!</button></div>
+      <div class="clearButtonContainer"><button type="button" name="clearButton" id="clearButton" class="clearButton">Clear</button></div>
+    </div>
+    <!-- <input type="text" name="name" value=""> -->
     <h1>Game of life</h1>
     <canvas id="canvas"></canvas>
+    <div class="img" title="tooltip"></div>
     <!-- <img src="./icons/question.svg" alt="info"/> -->
     <footer class="footer">by <span>@<a href="https://github.com/agentpietrucha">agentpietrucha</a></span></footer>
     <script src="./life.js"></script>
