@@ -11,5 +11,4 @@ This game, or maybe rahter "life" relays on 4 simple rules:
 
 4. Each cell with three neighbors becomes populated
 
-
-
+![Alt text](https://github.com/agentpietrucha/game-of-life/blob/master/screenshot/gameOfLifeScreenShot.png?raw=true)
