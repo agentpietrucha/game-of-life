@@ -1,3 +1,5 @@
+#Game of life is available under this [link](https://agentpietrucha.github.io/game-of-life/)
+
 This is "Game of life". It's not a game but rather a 'cellular automaton', and was invented by 
 Cambridge mathematician John Conway.
 
