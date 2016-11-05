@@ -32,13 +32,13 @@ canvas{
   position: relative;
 }
 .buttonsContainer{
-  height: 40px;
+  height: 70px;
   left: 92px;
   align-self: center;
   position: absolute;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;;
 }
 .playButton{
   border-radius: 8px;
@@ -48,7 +48,6 @@ canvas{
   background-color: white;
   border: 0px;
   position: relative;
-  /*left: 92px;*/
   outline:none;
   align-self: center;
   order: 0;
@@ -68,10 +67,8 @@ canvas{
   background-color: white;
   border: 0px;
   position: relative;
-  /*left: 92px;*/
   outline:none;
   align-self: center;
-  /*top: 10px;*/
 }
 .clearButton:active{
   background-color: #c0c0c0;
@@ -79,12 +76,22 @@ canvas{
 .clearButton:hover{
   cursor: pointer;
 }
+.timeInput{
+  width: 130px;
+  font-size: 12px;
+  border-radius: 8px;
+  left: -32.5px;
+  font-family: 'Raleway';
+  position: relative;
+  align-self: center;
+  border: 1px solid #d4d4d4;
+}
 .img{
   position: absolute;
   background-image: url('./icons/question.svg');
-  background-size: 60px 30px;
+  background-size: 28px 30px;
   height: 30px;
-  width: 60px;
+  width: 28px;
   right: 30px;
   top: 15px;
   align-self: flex-start;
@@ -92,14 +99,27 @@ canvas{
 .img:hover{
   cursor: pointer;
 }
-.img:hover::after{
-  content: 'hello world';
+.instructions{
+  display: block;
   position: absolute;
-  top: 55px;
-  right: 15px;
-  height: 30px;
-  width: 30px;
-  background-color: #9c9c9c;
+  padding: 8px;
+  width: 210px;
+  height: 360px;
+  border: 1px solid aliceblue;
+  box-shadow: 2px 1px 11px #505050;
+  right: 12px;
+  align-self: center;
+  top: 65px;
+}
+.instructions:hover{
+  cursor: default;
+}
+.instructions span{
+  font-family: 'Raleway';
+  color: floralwhite;
+}
+.bld{
+  font-weight: bold;
 }
 .footer{
   color: #a9a9a9;

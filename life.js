@@ -66,13 +66,20 @@ var x;
 function interval(){
   x = setInterval(live, 1000);
 }
+var timeInput = document.querySelector('.timeInput');
 var inpt = document.querySelector('input');
 var interval;
 var clicked = true;
 var playButton = document.getElementById('playButton');
 playButton.addEventListener('click', function(e){
+  var time;
+  if(timeInput.value === ''){
+    time = 750;
+  } else {
+    time = parseInt(timeInput.value);
+  }
   if(clicked){
-    interval = setInterval(live, 750);
+    interval = setInterval(live, time);
     clicked = false;
   } else{
     clearInterval(interval);
@@ -99,9 +106,15 @@ clearButton.addEventListener('click', function(e){
 })
 var body = document.body;
 body.addEventListener('keydown', function(e){
+  var time;
+  if(timeInput.value === ''){
+    time = 750;
+  } else {
+    time = parseInt(timeInput.value);
+  }
   if(e.keyCode === 13){
     if(clicked){
-      interval = setInterval(live, 750);
+      interval = setInterval(live, time);
       clicked = false;
     } else{
       clearInterval(interval);
