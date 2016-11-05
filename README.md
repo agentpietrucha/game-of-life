@@ -12,4 +12,4 @@ This game, or maybe rahter "life" relays on 4 simple rules:
 4. Each cell with three neighbors becomes populated
 
 
-![Alt text](https://c1.staticflickr.com/9/8091/8575091328_5a3c10e5f1_b.jpg "Optional title")
+
