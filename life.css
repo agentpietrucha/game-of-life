@@ -18,20 +18,17 @@ input{
 .centerContainer{
   flex-basis: 200px;
   height: 700px;
-  /*background: red;*/
   position: relative;
 }
 .buttonsContainer{
   flex-basis: 200px;
   height: 700px;
-  /*background: blue;*/
   position: relative;
 
 }
 .instructionsContainer{
   flex-basis: 200px;
   height: 700px;
-  /*background: green;*/
   position: relative;
 
 
@@ -42,23 +39,16 @@ input{
   position: relative;
   display: flex;
   flex-direction: column;
-  /*justify-content: space-between;*/
-  /*align-content: center;*/
 }
 h1{
   font-size: 50px;
   font-family: 'Indie Flower';
   margin: 0;
-  /*width: 310px;*/
-  /*left: 38%;*/
   position: relative;
   align-self: center;
 }
 canvas{
-  /*width: 700px;*/
   position: relative;
-  /*top: 65px;*/
-  /*left: 250.5px;*/
   align-self: center;
   top: -5px;
 }
