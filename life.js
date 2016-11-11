@@ -4,8 +4,8 @@
 Height = 744px
 width = 1301px
 */
-var recSize = 16;
-var rowsNum = 38;
+var recSize = 16; //16
+var rowsNum = 38; //38
 var columnsNum = 50;
 var canvas = document.querySelector('#canvas');
 canvas.width = recSize * columnsNum;
@@ -36,6 +36,7 @@ for(var i = 0; i <= columnsNum; i++){
 }
 var aliveCells = new Array;
 canvas.addEventListener('click', function(e){
+  var clicked = true;
   var x = e.clientX - canvas.getBoundingClientRect().left;
   var y = e.clientY - canvas.getBoundingClientRect().top;
   drawRect(x, y);
@@ -43,8 +44,19 @@ canvas.addEventListener('click', function(e){
   y = (Math.floor(y/16) * 16) + .5;
   if(aliveCells.length === 0){
     aliveCells.push({x: x, y: y});
+    clicked = !clicked;
   } else  if(!containsElement(aliveCells, x, y)){
     aliveCells.push({x: x, y: y});
+    clicked = !clicked;
+    }
+    if(clicked){
+      for(var i = 0; i < aliveCells.length; i++){
+        if(containsElement(aliveCells, x, y)){
+          aliveCells.splice(i, 1);
+          ctx.fillStyle = 'darkcyan';
+          ctx.fillRect(x, y, 15, 15);
+        }
+      }
     }
 });
 function containsElement(arr, x, y){
@@ -103,7 +115,7 @@ clearButton.addEventListener('click', function(e){
     ctx.fillRect(aliveCells[i].x, aliveCells[i].y, 15, 15);
   }
   aliveCells = [];
-})
+});
 var body = document.body;
 body.addEventListener('keydown', function(e){
   var time;
@@ -179,7 +191,7 @@ function live(){
     }
   }
   aliveCells = newAliveCells;
-  }
+}
 function getNeighbours(index){
   cell = aliveCells[index];
   return [{x: cell.x - 16, y:  cell.y}, {x: cell.x + 16, y: cell.y}, {x: cell.x, y: cell.y - 16}, {x: cell.x, y: cell.y + 16}, {x: cell.x - 16, y: cell.y - 16}, {x: cell.x - 16, y: cell.y + 16}, {x: cell.x + 16, y: cell.y - 16}, {x: cell.x + 16, y: cell.y + 16}];
