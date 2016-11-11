@@ -3,50 +3,81 @@ body{
   padding: 0;
   height: 100%;
   width: 100%;
-  position: absolute;
+  position: relative;
   overflow: hidden;
   background-color: darkcyan;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  align-items: baseline;
-  align-content: center;
+  justify-content: space-around;
+  align-items: stretch;
+  align-content: stretch;
 }
 input{
   position: absolute;
+}
+.centerContainer{
+  flex-basis: 200px;
+  height: 700px;
+  /*background: red;*/
+  position: relative;
+}
+.buttonsContainer{
+  flex-basis: 200px;
+  height: 700px;
+  /*background: blue;*/
+  position: relative;
+
+}
+.instructionsContainer{
+  flex-basis: 200px;
+  height: 700px;
+  /*background: green;*/
+  position: relative;
+
+
+}
+.center{
+  width: 100%;
+  align-self: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  /*justify-content: space-between;*/
+  /*align-content: center;*/
 }
 h1{
   font-size: 50px;
   font-family: 'Indie Flower';
   margin: 0;
-  width: 310px;
-  left: 38%;
-  position: absolute;
+  /*width: 310px;*/
+  /*left: 38%;*/
+  position: relative;
+  align-self: center;
 }
 canvas{
+  /*width: 700px;*/
   position: relative;
-  top: 65px;
-  left: 250.5px;
-}
-.playButtonContainer{
-  position: relative;
-}
-.buttonsContainer{
-  height: 70px;
-  left: 92px;
+  /*top: 65px;*/
+  /*left: 250.5px;*/
   align-self: center;
-  position: absolute;
+  top: -5px;
+}
+
+.buttons{
+  height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;;
+  position: relative;
+  justify-content: center;
 }
 .playButton{
+  margin: 4px;
   border-radius: 8px;
   border: 1px solid #d4d4d4;
   font-size: 12px;
   width: 67px;
   background-color: white;
-  border: 0px;
   position: relative;
   outline:none;
   align-self: center;
@@ -59,13 +90,13 @@ canvas{
   cursor: pointer;
 }
 .clearButton{
+  margin: 4px;
   order: 1;
   border-radius: 8px;
   border: 1px solid #d4d4d4;
   font-size: 12px;
   width: 67px;
   background-color: white;
-  border: 0px;
   position: relative;
   outline:none;
   align-self: center;
@@ -77,10 +108,12 @@ canvas{
   cursor: pointer;
 }
 .timeInput{
+  margin: 4px;
+  order: 2;
   width: 130px;
   font-size: 12px;
   border-radius: 8px;
-  left: -32.5px;
+  left: 0px;
   font-family: 'Raleway';
   position: relative;
   align-self: center;
@@ -99,20 +132,18 @@ canvas{
 .img:hover{
   cursor: pointer;
 }
+
+.instructionsContainer:hover{
+  cursor: default;
+}
 .instructions{
-  display: block;
-  position: absolute;
+  position: relative;;
   padding: 8px;
   width: 210px;
-  height: 360px;
   border: 1px solid aliceblue;
   box-shadow: 2px 1px 11px #505050;
-  right: 12px;
-  align-self: center;
-  top: 65px;
-}
-.instructions:hover{
-  cursor: default;
+  align-self: flex-end;;
+  top: 73px;
 }
 .instructions span{
   font-family: 'Raleway';
@@ -125,7 +156,7 @@ canvas{
   color: #a9a9a9;
   align-self: flex-end;
   right: 15px;
-  bottom: 15px;
+  bottom: 25px;
   position: absolute;
 }
 .footer span{
