@@ -44,13 +44,15 @@ canvas.addEventListener('click', function(e){
   drawRect(x, y, 'aliceblue');
   if(!containsElement(aliveCells, x, y)){
       aliveCells.push({x: x, y: y});
+      console.log('length: ', aliveCells.length);
       clicked = !clicked;
     }
     if(clicked){
       for(var i = 0; i < aliveCells.length; i++){
-        if(containsElement(aliveCells, x, y)){
+        if(aliveCells[i].x === x && aliveCells[i].y === y){
+          drawRect(aliveCells[i].x, aliveCells[i].y, 'darkcyan');
           aliveCells.splice(i, 1);
-          drawRect(x, y, 'darkcyan');
+          console.log('length: ', aliveCells.length);
         }
       }
     }
