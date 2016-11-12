@@ -69,7 +69,6 @@ function getParameter(p){
 }
 function drawRect(x, y, colour){
   ctx.fillStyle = colour;
-  console.log(x, y);
   ctx.fillRect(x, y, recSize - 1, recSize - 1);
 }
 var timeInput = document.querySelector('.timeInput');
@@ -168,7 +167,7 @@ function live(){
       var neighbour = neighbours[a];
       var liveNeighboursNum = getLiveNeighboursNum(neighbours, a);
       if (liveNeighboursNum === 3) {
-        drawRect(aliveCells[i].x, aliveCells[i].y, 'aliceblue');
+        drawRect(neighbour.x, neighbour.y, 'aliceblue');
         if(!containsElement(newAliveCells, neighbour.x, neighbour.y)){
           newAliveCells.push(neighbour);
           }
