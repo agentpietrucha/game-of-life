@@ -4,9 +4,29 @@
 Height = 744px
 width = 1301px
 */
-var recSize = 16;
-var rowsNum = 38;
-var columnsNum = 50;
+
+switch (window.innerWidth) {
+  case 1024:
+    var recSize = 14;
+    var rowsNum = 38;
+    var columnsNum = 40;
+  break;
+  case 1301:
+    var recSize = 16;
+    var rowsNum = 38;
+    var columnsNum = 50;
+  break;
+  case 980:
+    var recSize = 12;
+    var rowsNum = 32;
+    var columnsNum = 40;
+  break;
+  default:
+    var recSize = 14;
+    var rowsNum = 38;
+    var columnsNum = 40;
+
+}
 var canvas = document.querySelector('#canvas');
 canvas.width = recSize * columnsNum;
 canvas.height = recSize * rowsNum;
